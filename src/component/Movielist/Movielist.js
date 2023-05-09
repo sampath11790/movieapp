@@ -6,49 +6,18 @@ import MovieListItem from "./MovielistItem";
 //   { name: "two", place: "chennai" },
 //   { name: "three", place: "hosur" },
 // ];
-const MovieList = ({ user }) => {
-  const newlist = [...user];
-  const [data, setdata] = useState(newlist);
-  const [name, setname] = useState("");
-  const [place, setplace] = useState("");
-
-  function adduser(e) {
-    e.preventDefault();
-    const newobj = {
-      name: name,
-      place: place,
-    };
-    var temparr = [...data, newobj];
-    setdata(temparr);
-    setname(" ");
-    setplace(" ");
-    // console.log("add data function");
-    // console.log(name, place);
-  }
-
-  function nameadd(e) {
-    setname(e.target.value);
-  }
+const MovieList = ({ Movies }) => {
   return (
     <div>
-      <form>
-        <input type="text" name="name" onChange={nameadd} value={name}></input>
-        <br></br>
-        <input
-          type="text"
-          name="place"
-          value={place}
-          onChange={(e) => {
-            setplace(e.target.value);
-          }}
-        ></input>
-        <br></br>
-        <button onClick={adduser}>submit</button>
-        <br></br>
-      </form>
       <ul>
-        {data.map((each) => (
-          <MovieListItem name={each.name} place={each.place}></MovieListItem>
+        {Movies.map((each) => (
+          <MovieListItem
+            id={each.id}
+            key={each.id}
+            moviename={each.moviename}
+            rating={each.rating}
+            image={each.poster}
+          ></MovieListItem>
         ))}
       </ul>
     </div>
